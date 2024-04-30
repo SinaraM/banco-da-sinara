@@ -1,6 +1,8 @@
 package com.bancodasinara.model
 
 import com.bancodasinara.enums.BookStatus
+import com.bancodasinara.enums.Errors
+import com.bancodasinara.exception.BadRequestException
 import jakarta.persistence.*
 import java.math.BigDecimal
 
@@ -27,7 +29,7 @@ data class BookModel(
     var status: BookStatus? = null
         set(value) {
            if (field == BookStatus.CANCELADO || field == BookStatus.DELETADO)
-               throw Exception("Não é possivel alterar um livro com status ${field}")
+               throw BadRequestException(Errors.BS102.message.format(field), Errors.BS102.code)
 
            field = value
         }

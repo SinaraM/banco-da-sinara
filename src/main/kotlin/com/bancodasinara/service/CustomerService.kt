@@ -1,6 +1,8 @@
 package com.bancodasinara.service
 
 import com.bancodasinara.enums.CustomerStatus
+import com.bancodasinara.enums.Errors
+import com.bancodasinara.exception.NotFoundException
 import com.bancodasinara.model.CustomerModel
 import com.bancodasinara.repository.CustomerRepository
 import org.springframework.stereotype.Service
@@ -24,7 +26,7 @@ class CustomerService(
     }
 
     fun findById(id: Int): CustomerModel {
-        return customerRepository.findById(id).orElseThrow()
+        return customerRepository.findById(id).orElseThrow{NotFoundException(Errors.BS201.message.format(id), Errors.BS201.code)}
     }
 
     fun update(customer: CustomerModel) {

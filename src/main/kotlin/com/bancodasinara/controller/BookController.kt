@@ -7,6 +7,9 @@ import com.bancodasinara.controller.request.PutBookRequest
 import com.bancodasinara.controller.response.BookResponde
 import com.bancodasinara.service.BookService
 import com.bancodasinara.service.CustomerService
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
@@ -25,13 +28,13 @@ class BookController(
     }
 
     @GetMapping
-    fun findAll(): List<BookResponde> {
-        return bookService.findAll().map { it.toResponse() }
+    fun findAll(@PageableDefault(page = 0, size = 10) pageable: Pageable): Page<BookResponde> {
+        return bookService.findAll(pageable).map { it.toResponse() }
     }
 
     @GetMapping("/active")
-    fun findActives(): List<BookResponde> =
-        bookService.findActives().map { it.toResponse() }
+    fun findActives(@PageableDefault(page = 0, size = 10) pageable: Pageable): Page<BookResponde> =
+        bookService.findActives(pageable).map { it.toResponse() }
 
     @GetMapping("/{id}")
     fun findById(@PathVariable id: Int): BookResponde {
