@@ -30,7 +30,7 @@ class CustomerService(
     }
 
     fun update(customer: CustomerModel) {
-        if(!customerRepository.existsById(customer.id!!)){
+        if(!customerRepository.existsById(customer.id!!)){n
             throw Exception()
         }
 
