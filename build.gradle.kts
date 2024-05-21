@@ -20,11 +20,19 @@ repositories {
 }
 
 dependencies {
+	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
+
+	implementation ("javax.servlet:javax.servlet-api:4.0.1") // Ou a versão mais recente
+
+
+// Swagger deps
+	implementation("io.springfox:springfox-swagger2:3.0.0")
+	implementation("io.springfox:springfox-swagger-ui:3.0.0")
 
 	//implementation ("org.flywaydb:flyway-core:10.11.1")
 	//implementation("io.quarkus:quarkus-flyway")

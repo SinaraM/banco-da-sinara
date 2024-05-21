@@ -10,4 +10,4 @@ spring:
     default-property-inclusion: non_null
 
 
-
+spring.mvc.pathmatch.matching-strategy: ant_path_matcher
