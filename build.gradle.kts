@@ -33,6 +33,7 @@ dependencies {
 // Swagger deps
 	implementation("io.springfox:springfox-swagger2:3.0.0")
 	implementation("io.springfox:springfox-swagger-ui:3.0.0")
+	//implementation("io.springfox:springfox-boot-starter:3.0.0")
 
 	//implementation ("org.flywaydb:flyway-core:10.11.1")
 	//implementation("io.quarkus:quarkus-flyway")

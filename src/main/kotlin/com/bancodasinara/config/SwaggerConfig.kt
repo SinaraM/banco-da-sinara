@@ -20,7 +20,8 @@ class SwaggerConfig {
         .paths(PathSelectors.any())
         .build()
 
-        .apiInfo(ApiInfoBuilder()
+        .apiInfo(
+            ApiInfoBuilder()
             .title("Banco da Sinara")
             .description("Api da Sinara")
             .build())
