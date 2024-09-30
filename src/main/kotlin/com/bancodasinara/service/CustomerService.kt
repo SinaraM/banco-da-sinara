@@ -2,16 +2,21 @@ package com.bancodasinara.service
 
 import com.bancodasinara.enums.CustomerStatus
 import com.bancodasinara.enums.Errors
+import com.bancodasinara.enums.Profile
 import com.bancodasinara.exception.NotFoundException
 import com.bancodasinara.model.CustomerModel
 import com.bancodasinara.repository.CustomerRepository
+import org.springframework.security.crypto.bcrypt.BCrypt
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import java.lang.Exception
+import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities.Private
 
 @Service
 class CustomerService(
-    val customerRepository: CustomerRepository,
-    val bookService: BookService
+    private val customerRepository: CustomerRepository,
+    private val bookService: BookService,
+    private val bCrypt: BCryptPasswordEncoder
 ) {
 
     fun getAll(name: String?): List<CustomerModel> {
@@ -22,7 +27,11 @@ class CustomerService(
     }
 
     fun create(customer: CustomerModel) {
-        customerRepository.save(customer)
+        val customerCopy = customer.copy(
+            roles = setOf(Profile.CUSTOMER),
+            password = bCrypt.encode(customer.password)
+        )
+        customerRepository.save(customerCopy)
     }
 
     fun findById(id: Int): CustomerModel {
